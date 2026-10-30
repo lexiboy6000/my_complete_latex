@@ -1,0 +1,171 @@
+\newpage
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The Problem}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Let $\Q$ be a $\Q$-like set (i.e. dense,ordered abelian group with archemedian property that contains more than just the zero element --Definition~\ref{def:qlike}); We consider $\Q$ with its natural metric
+\[ d: \Q \times \Q \to \Q \mid d(x,y) = |x-y|, \]
+whose topology is the order topology (Lemma~\ref{lem:natmetric}). Our problem
+is that this metric need not be complete: for the rationals it has holes
+(Theorem~\ref{thm:holes}). We therefore wish to find a larger metric space
+$\Qb$ such that
+\[
+\begin{aligned}
+(1)\quad & (\Q,d) \subseteq (\Qb,\db),\\[2mm]
+(2)\quad & (\Qb,\db)\ \text{is complete},\\[2mm]
+(3)\quad & \text{if } Z \text{ is any complete metric space with }
+(\Q,d)\subseteq (Z,d_Z),\text{ then } (\Qb,\db)\subseteq (Z,d_Z).
+\end{aligned}
+\]
+These properties make $\Qb$ the set containing $\Q$ (1), all of the missing
+holes (2), and nothing else (3). Here ``$\subseteq$'' means ``embeds
+isometrically into''; this is made precise in Section~\ref{sec:embed} and
+Section~\ref{sec:smallest}. I now construct such a set and prove it has the
+desired properties.
+
+
+%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%
+% formal construction
+%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%
+
+\subsection{Formal Construction of $\Qb$} \label{sec:construct}
+
+The plan: construct $\Qb$ as equivalence classes of Cauchy sequences
+(Step 1); construct $\db:\Qb\times\Qb\to\Qb$ and show it is well defined
+(Step 2); show that $\Qb$ is itself a valid set of values, i.e.\ a $\Q$-like
+set (Step 3); and show that $\db$ is a metric, in fact the natural one
+(Step 4).
+
+\step{1}{Construct the ambient space.}
+
+Write $\mathscr{L}(\N \to \Q)$ for the set of all functions $\N\to\Q$, i.e.\
+all sequences in $\Q$. It exists by the power set axiom: a function is a
+subset of $\N\times\Q$, so $\mathscr{L}(\N\to\Q)$ is carved out of
+$\mathcal P(\N\times\Q)$ by specification. By specification again we keep only
+the Cauchy sequences:
+\[
+S := \{(x_n)\in\mathscr{L}(\N \to \Q) \mid (x_n) \text{ is a Cauchy sequence in } (\Q,d)\}.
+\]
+Define the relation on $S$:
+\[
+(x_n) \sim (y_n)
+\iff d\text{-}\lim_{\substack{n \to \infty \\ n \in \N }} d(x_n, y_n) = 0 .
+\]
+
+\begin{lemma} $\sim$ is an equivalence relation on $S$.
+\end{lemma}
+
+This defines equivalence classes:
+\[
+[(x_n)] = \{(z_n) \in S \mid (z_n) \sim (x_n)\},
+\qquad
+[(x_n)] = [(y_n)] \iff (x_n) \sim (y_n).
+\]
+By the axiom of replacement (or by specification inside $\mathcal P(S)$), we
+replace each $(x_n) \in S$ with its equivalence class $[(x_n)]$. Thus the
+ambient space is:
+\[
+\Qb :=
+\{[(x_n)] \mid (x_n) \in \mathscr{L}(\N \to \Q),\ (x_n)\ \text{Cauchy}\}.
+\]
+
+%The idea: a Cauchy sequence ``points at'' a location, possibly a hole, and two
+%sequences are identified when they point at the same location.
+% rather not have this sentence, keep commented out
+
+\step{2}{Define the distance.}
+
+\[ \db: \Qb \times \Qb \to \Qb, \qquad
+ \db( [(x_n)] ,[(y_n)] )  :=  [(d(x_n,y_n))] . \]
+
+I must show that (a) $[(d(x_n,y_n))] $ is indeed in $\Qb$ and (b) that this is a well defined function ...
+
+\step{3}{$\Qb$ is a $\Q$-like set.}
+
+Before we can even say that $\db$ is a metric we need ``$+$'' and ``$<$'' on
+$\Qb$, satisfying (V1) and (V2). We also check (V3), density and
+nontriviality, so that $\Qb$ is as good a set of values as $\Q$ was.
+
+\substep{a}{\textbf{(V1) abelian group.} Define}
+\[
+[(x_n)]+[(y_n)] := [(x_n+y_n)],\qquad -[(x_n)] := [(-x_n)],\qquad 0:=[(0,0,0,\dots)].
+\]
+
+The abelian group laws hold because they hold term by term in $\Q$. For
+$a\in\Q$ we write $\iota(a):=[(a,a,a,\dots)]$ for the class of the constant
+sequence; I come back to this in section ~\ref{sec:embed}. Note
+$\iota(a)+\iota(b)=\iota(a+b)$ and $-\iota(a)=\iota(-a)$.
+
+\substep{b}{\textbf{(V2) positivity and order.}}
+
+\begin{definition} (positivity, order) $\mid$
+Call $[(x_n)]$ \emph{positive}, written $[(x_n)]>0$, if
+\[
+\exists \delta\in\Q,\ \delta>0,\ \exists N \mid \forall n>N,\ x_n\ge \delta .
+\]
+Define $X<Y \iff Y-X>0$, and $X\le Y\iff X<Y$ or $X=Y$.
+\end{definition}
+
+% Positivity is well defined, and $\iota$ preserves order:
+% \begin{align*}
+% &(y_n)\sim(x_n),\ x_n\ge\delta\ev,\ \eta:=\delta/2
+% \imp |x_n-y_n|<\eta\ev \imp y_n>x_n-\eta\ge\delta-\eta\ge\eta>0\ev\\
+% &\qquad\imp [(y_n)]>0.\\
+% &a<b \imp b-a\ge\delta:=b-a>0 \imp \iota(b)-\iota(a)=\iota(b-a)>0;\qquad
+% \iota(a)<\iota(b) \imp b-a\ge\delta>0 \imp a<b.
+% \end{align*}
+
+\begin{lemma} (trichotomy) $\mid$ \label{lem:tri}
+For every $X=[(x_n)]\in\Qb$ exactly one of $X=0$, $X>0$, $-X>0$ holds.
+Consequently $\Qb$ satisfies (V1) and (V2).
+\end{lemma}
+
+The following lemma is the bridge between orderings of sequences and
+orderings of classes; we use it constantly.
+
+\begin{lemma} (eventual comparison) $\mid$ \label{lem:evcomp}
+For $(u_n),(v_n)\in S$:
+\[
+\exists N \mid \forall n>N, u_n\le v_n \imp [(u_n)]\le[(v_n)] .
+\]
+\end{lemma}
+
+\begin{lemma} ($\Q$ is coinitial and cofinal in $\Qb$) $\mid$ \label{lem:ratbounds}
+\begin{enumerate}[nosep,leftmargin=3em]
+    \item[(a)] $\epsilon\in\Qb,\ \epsilon>0 \imp \exists q\in\Q:\ 0<\iota(q)<\epsilon$.
+    \item[(b)] $X\in\Qb \imp \exists q\in\Q:\ X<\iota(q)$.
+\end{enumerate}
+\end{lemma}
+
+\substep{c}{\textbf{(V3) Archimedean.}}
+\begin{align*}
+&X,Y>0 \imp x_n\ge\delta>0\ev \imp X\ge\iota(\delta);\qquad
+Y<\iota(M)\ \text{ for some } M\in\Q\ \ (\ref{lem:ratbounds}\text{b});\\
+&\text{(V3) in } \Q \imp \exists n:\ n\delta>M \imp nX\ge n\,\iota(\delta)=\iota(n\delta)>\iota(M)>Y.
+\end{align*}
+
+\substep{d}{\textbf{density, nontriviality.}}
+\begin{align*}
+&X<Y \imp Y-X>0 \by{\ref{lem:ratbounds}a} \exists q\in\Q:\ 0<\iota(q)<Y-X
+\imp X<X+\iota(q)<Y.\\
+&c>0 \text{ in } \Q \imp \iota(c)>0 \imp \Qb\ne\{0\}.
+\end{align*}
+
+\step{4}{$(\Qb,\db)$ is a metric space with values in $\Qb$, and $\db$ is the natural metric of $\Qb$.}
+
+\begin{lemma} ($\db$ is the natural metric of $\Qb$) $\mid$ \label{lem:natbar}
+For all $X,Y\in\Qb$: $\ \db(X,Y)=|Y-X|$, with $|\cdot|$ taken in the
+$\Q$-like set $\Qb$. So $\Qb$ carries exactly the same kind of metric as $\Q$
+did (Definition~\ref{def:natmetric}), and its topology is the order topology
+(Lemma~\ref{lem:natmetric}).
+\end{lemma}
+
+

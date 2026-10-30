@@ -1,0 +1,6 @@
+name = "SeqComplete"
+version = "0.1.0"
+defaultTargets = ["SeqComplete"]
+
+[[lean_lib]]
+name = "SeqComplete"

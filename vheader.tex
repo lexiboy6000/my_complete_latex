@@ -1,0 +1,83 @@
+\documentclass{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools} % \xRightarrow (labelled arrows)
+% for theorem type-format, limits double subscript, etc.
+\usepackage{enumitem} % compact / indented lists
+\usepackage{float}    % [H] = put the figure exactly here, never float it away
+\usepackage{needspace} % keep a "Step" heading on the same page as what follows it
+\usepackage{titlesec} % control the space around section headings
+
+% more air around section / subsection headings
+\titlespacing*{\section}{0pt}{3.5em plus 1em minus .5em}{1.2em plus .3em}
+\titlespacing*{\subsection}{0pt}{2.5em plus .8em minus .4em}{1em plus .2em}
+
+\usepackage{tikz} % for drawings...
+\usetikzlibrary{tikzmark}
+\usetikzlibrary{calc}
+\usetikzlibrary{decorations.markings} % going x% along bezier curve
+\usetikzlibrary{patterns} % for hatched shading
+\usetikzlibrary{decorations.pathreplacing} % curly braces in diagrams
+
+\usepackage{mathrsfs} % \mathscr{L} % fancy script L
+\usepackage[hidelinks]{hyperref} % clickable \ref's, no coloured boxes
+
+\usetikzlibrary{arrows.meta} %for stealth arrow tips
+
+\title{v5 construction of R}
+\author{Lex S}
+\date{October 2026}
+
+
+% how do pt vs nothing-units compare?? --- 5 pt=0.176 cm --- ish
+% basically pt means in units of letters size
+% and nothing units is basically in cm
+
+%\    1 word space    a\ b
+%\quad    1 em    a\quad b
+%\qquad    2 em    a\qquad b
+
+% spacing: a little more air everywhere
+\setlength{\jot}{6pt}                    % space between the rows of an align (default 3pt)
+\setlength{\parskip}{2pt plus 1pt}       % a hair of space between paragraphs
+\makeatletter
+% same look as amsthm's "definition" style, but 12pt above and below instead of 8pt
+\newtheoremstyle{spaced}{12pt plus 2pt minus 2pt}{12pt plus 2pt minus 2pt}{}{}{\bfseries}{.}{5pt plus 1pt minus 1pt}{}
+% amsthm's proof environment with 10pt (instead of 6pt) above and below
+\renewenvironment{proof}[1][\proofname]{\par
+  \pushQED{\qed}%
+  \normalfont \topsep 10\p@\@plus4\p@\relax
+  \trivlist
+  \item[\hskip\labelsep\itshape #1\@addpunct{.}]\ignorespaces
+}{\popQED\endtrivlist\@endpefalse}
+\makeatother
+
+\theoremstyle{spaced}
+\newtheorem{definition}{DEFINITION}[section]
+\newtheorem{theorem}[definition]{THEOREM}
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{remark}[definition]{Remark}
+\newtheorem{example}[definition]{Example}
+
+% shorthands
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Qb}{\bar{\mathbb{Q}}}
+\newcommand{\db}{\bar{d}}
+\newcommand{\Vb}{\bar{V}}
+
+% proof-chain notation
+\newcommand{\imp}{\;\Rightarrow\;}                                   % implication
+\newcommand{\by}[1]{\;\xRightarrow{\,\text{\scriptsize #1}\,}\;}     % implication, with the reason on the arrow
+\newcommand{\byiff}[1]{\;\xLeftrightarrow{\,\text{\scriptsize #1}\,}\;}
+\newcommand{\ev}{\ (n\gg0)}                                          % "for all sufficiently large n"
+\newcommand{\step}[2]{\par\Needspace{8\baselineskip}\vspace{1.5em}\noindent\textbf{Step #1 $\mid$} #2\par}
+\newcommand{\substep}[2]{\par\vspace{1em}\noindent\hspace{1.5em}\textbf{#1 $\mid$} #2}
+

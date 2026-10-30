@@ -1,0 +1,14 @@
+\newpage
+\section{Smallest complete metric} \label{sec:smallest}
+
+To make property (3) precise we must say what a ``complete metric space
+containing $\Q$'' is. The idea is that we have some larger metric space $(Z,d_Z)$ with values in some set $A$ that contains $Q$. Then, this metric space "contains" $Q$ if it contains $(Q,d)$ isomorphically. This makes sense because the values A contain Q and therefore we can have values from $d_Z$ isomorphically equivalent to values from $d$. More precisely, we make the following thereom....
+
+\begin{definition} (isometric imbedding) $\mid$ \label{def:iso-imbedding}
+Let $(Q,d)$ be a metric space with values in abelian and compatibly ordered $C$. Let $(Z,d_Z)$ be a complete metric space with values in abelian and  compatibly ordered $A$. We say that $(Q,d) \subseteq (Z,d_Z)$ if  (1) there exists an isomorphic mapping $l$ taking $(C,+,<)$ into $(A,+,<)$, (2) there exists an isomorphic mapping $\phi$ taking $\Q$ into $Z$, and (3) the distance $d_Z: Z \times Z \to A$ is such that $\forall q_1,q_2 \in Q\; l(d(q_1,q_2)) = d_Z(\phi(q_1),\phi(q_2))$. 
+\end{definition}
+
+\begin{theorem} (smallest complete metric) $\mid$ \label{thm:smallest}
+Let $(Z,d_Z)$ be a complete metric space with values in $(A,+,<)$. If $(Q,d) \subseteq (Z,d_Z)$, then $(\Qb,\bar{d}) \subseteq (Z,d_Z)$. The isomorphic imbedding of values into $A$ is assumed implicitly by the usual manner in accordance with the definition of an isometric imbedding. 
+\end{theorem}
+

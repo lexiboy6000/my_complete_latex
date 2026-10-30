@@ -1,0 +1,205 @@
+\newpage
+
+%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%
+% completeness  --  property (2)
+%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%
+
+\section{Completeness proof via points} \label{sec:complete}
+
+I prove the same complete
+
+\noindent
+\fbox{%
+  \begin{minipage}{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}
+
+  
+\begin{theorem} (formal limits are real limits) $\mid$ \label{thm:formal}
+Let $(a_n)$ be a Cauchy sequence in $(\Q,d)$. Then, in $(\Qb,\db)$,
+\[
+\db\text{-}\lim_{\substack{n\to\infty\\ n\in\N}}\iota(a_n) = [(a_n)] .
+\]
+I.e. once viewed inside $\Qb$, a Cauchy sequence converges, and its limit
+is its own class. It is this theorem that beautifully allows us to turn Cauchy sequences into limits. 
+\end{theorem}
+\begin{proof}
+By Corollary~\ref{cor:wise} it suffices to take $\epsilon\in\Q$, $\epsilon>0$.
+Choose $N$ so large that $d(a_n,a_N)<\epsilon/2$ for all $n>N$. Then, for all
+$m>N$,
+\begin{align*}
+\db\big(\iota(a_m),[(a_n)]\big)
+&\le \db\big([a_m\ a_m\ \dots],[a_N\ a_N\ \dots]\big)+\db\big([a_N\ a_N \dots],[(a_n)]\big)
+&&\text{(triangle inequality in $\Qb$, Step 4)}\\
+&= \iota\big(d(a_m,a_N)\big)+\big[(d(a_N,a_n))_{n\in\N}\big]
+&&\text{($\iota$ is an isometry; definition of $\db$)}\\
+&< \iota(\epsilon/2)+\iota(\epsilon/2)
+&&\text{(3b; Lemma~\ref{lem:evcomp})}\\
+&\le \iota(\epsilon) . \qedhere
+\end{align*}
+\end{proof}
+
+  \end{minipage}%
+}
+
+\begin{theorem} ($\Q$ is dense in $\Qb$) $\mid$ \label{thm:dense}
+\[
+\forall\epsilon\in\Qb,\ \epsilon>0,\quad \forall X\in\Qb,\quad
+\exists q\in\Q \mid \db(\iota(q),X)<\epsilon .
+\]
+\end{theorem}
+\begin{proof}
+Choose a representative $(a_n)$ of $X$, i.e.\ $X=[(a_n)]$; this is the only
+non-explicit choice in the proof. By Lemma~\ref{lem:ratbounds}(a) there is an
+$\epsilon_q\in\Q$ with $0<\iota(\epsilon_q)<\epsilon$. Choose $N$ (explicitly,
+say the least one) such that $d(a_n,a_N)<\epsilon_q$ for all $n>N$, and put
+$q:=a_N$. Then
+\begin{align*}
+\db\big(\iota(q),X\big)
+&= \big[(d(a_N,a_n))_{n\in\N}\big]
+&&\text{(definition of $\db$)}\\
+&\le \big[(\epsilon_q,\epsilon_q,\epsilon_q,\dots)\big]
+&&\text{(Lemma~\ref{lem:evcomp}, as $d(a_N,a_n)<\epsilon_q$ for $n>N$)}\\
+&= \iota(\epsilon_q)\\
+&< \epsilon . \qedhere
+\end{align*}
+\end{proof}
+
+
+\begin{theorem} (completeness) $\mid$ \label{thm:completev2}
+$(\Qb,\db)$ is complete.
+\end{theorem}
+
+We wish to prove completeness via the same as \ref{thm:formal}, but the issue is each Cauchy sequence may not be in $\Q$. The idea (Figure~\ref{fig:approx}): replace each term of the given Cauchy
+sequence by a nearby element of $\Q$. These form a Cauchy sequence \emph{in
+$\Q$}, so their class is a point of $\Qb$, and by Theorem~\ref{thm:formal}
+it is their limit, hence also the limit of the original sequence.
+
+\begin{figure}[ht]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tikzpicture}
+\node at (-0.8,1.9) {$\Qb$};
+% the given Cauchy sequence X_n (blue) and nearby q_n (black)
+\coordinate (X1) at (0,1.2);
+\coordinate (X2) at (2.5,-0.9);
+\coordinate (X3) at (4.5,0.6);
+\coordinate (X4) at (6,-0.35);
+\coordinate (X5) at (7,0.18);
+\coordinate (L)  at (8,0);
+\coordinate (q1) at ($(X1)+(0.35,-0.3)$);
+\coordinate (q2) at ($(X2)+(-0.2,0.25)$);
+\coordinate (q3) at ($(X3)+(0.15,-0.18)$);
+\coordinate (q4) at ($(X4)+(0.1,0.1)$);
+\coordinate (q5) at ($(X5)+(-0.05,-0.06)$);
+% balls of radius e_n around X_n
+\draw[dashed,blue!60] (X1) circle (0.7);
+\draw[dashed,blue!60] (X2) circle (0.45);
+\draw[dashed,blue!60] (X3) circle (0.3);
+\draw[dashed,blue!60] (X4) circle (0.2);
+\draw[dashed,blue!60] (X5) circle (0.12);
+% the path of the q_n towards L
+\draw[gray,dotted,thick] (q1) -- (q2) -- (q3) -- (q4) -- (q5) -- (L);
+% points
+\foreach \i in {1,...,5}{
+  \fill[blue] (X\i) circle (1.8pt);
+  \fill[black] ($(q\i)+(-1.4pt,-1.4pt)$) rectangle ($(q\i)+(1.4pt,1.4pt)$);
+}
+\node[blue,above left] at (X1) {$X_1$};
+\node[blue,below left] at (X2) {$X_2$};
+\node[blue,above left] at (X3) {$X_3$};
+\node[blue,below left] at (X4) {$X_4$};
+\node[below right,font=\small] at (q1) {$q_1$};
+\node[above right,font=\small] at (q2) {$q_2$};
+\node[below right,font=\small] at (q3) {$q_3$};
+\fill[red] (L) circle (2.2pt);
+\node[red,right] at (L) {$L=[(q_1,q_2,q_3,\dots)]$};
+\end{tikzpicture}%
+}
+\caption{The idea of the proof. Blue: the given Cauchy sequence $(X_n)$ in
+$\Qb$, each term with a dashed ball of radius $\iota(e_n)$. Black squares: an
+element $q_n\in\Q$ chosen inside each ball (Theorem~\ref{thm:dense}). The $q_n$
+form a Cauchy sequence \emph{in $\Q$}, so they define a point $L=[(q_n)]$ of
+$\Qb$, and by Theorem~\ref{thm:formal} the $q_n$ converge to $L$. Since $X_n$
+stays within $\iota(e_n)$ of $q_n$, the $X_n$ converge to $L$ too.}
+\label{fig:approx}
+\end{figure}
+
+\begin{proof}
+Let $(X_n)$ be a Cauchy sequence in $(\Qb,\db)$, and let $(e_n)$ be the null
+sequence of Lemma~\ref{lem:nullseq}; by Corollary~\ref{cor:wise},
+$\iota(e_n)\to0$ in $\Qb$. By Theorem~\ref{thm:dense}, for each $n$ choose
+\[
+q_n\in\Q \quad\text{with}\quad \db\big(X_n,\iota(q_n)\big)<\iota(e_n) .
+\]
+Then $(q_n)$ is a Cauchy sequence in $\Q$ (Part I), so $L:=[(q_n)]$ is a point
+of $\Qb$, and $X_n\to L$ (Part II).
+
+\Needspace{16\baselineskip}
+\substep{Part I}{$(q_n)$ is a Cauchy sequence in $(\Q,d)$.}
+Let $\epsilon\in\Q$, $\epsilon>0$, and put $\epsilon':=\iota(\epsilon)/3\in\Qb$.
+Choose $N$ so large that
+\begin{align*}
+&(1)\quad \db(X_n,X_N)<\epsilon' \ \text{ for all } n>N
+&&\text{($(X_n)$ is Cauchy)},\\
+&(2)\quad \iota(e_n)<\epsilon' \ \text{ for all } n\ge N
+&&\text{($\iota(e_n)\to0$)}.
+\end{align*}
+Then, for all $n>N$,
+\begin{align*}
+\iota\big(d(q_n,q_N)\big)
+&= \db\big(\iota(q_n),\iota(q_N)\big)
+&&\text{($\iota$ is an isometry)}\\
+&\le \db\big(\iota(q_n),X_n\big)+\db\big(X_n,X_N\big)+\db\big(X_N,\iota(q_N)\big)
+&&\text{(triangle inequality in $\Qb$)}\\
+&< \iota(e_n)+\epsilon'+\iota(e_N)
+&&\text{(choice of $q_n$, $q_N$; (1))}\\
+&< \epsilon'+\epsilon'+\epsilon'
+&&\text{((2))}\\
+&\le \iota(\epsilon) ,
+\end{align*}
+and therefore $d(q_n,q_N)<\epsilon$, because $\iota$ reflects order (Step 3b).
+
+\Needspace{16\baselineskip}
+\substep{Part II}{$X_n\to L$.}
+Let $\epsilon\in\Qb$, $\epsilon>0$. Choose $N$ so large that
+\begin{align*}
+&(1)\quad \db(X_n,X_N)<\epsilon/3 \ \text{ for all } n>N
+&&\text{($(X_n)$ is Cauchy)},\\
+&(2)\quad \iota(e_N)<\epsilon/3
+&&\text{($\iota(e_n)\to0$)},\\
+&(3)\quad \db\big(\iota(q_N),L\big)<\epsilon/3
+&&\text{(Theorem~\ref{thm:formal}: $\iota(q_n)\to L$)}.
+\end{align*}
+
+
+\noindent
+\fbox{%
+  \begin{minipage}{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}
+
+The proof then comes down to a single line usage of the triangle inequality..... \\
+for all $n>N$,
+\begin{align*}
+\db\big(X_n,L\big)
+&\le \db\big(X_n,X_N\big)+\db\big(X_N,\iota(q_N)\big)+\db\big(\iota(q_N),L\big)
+&&\text{(triangle inequality in $\Qb$)}\\
+&< \epsilon/3+\iota(e_N)+\epsilon/3
+&&\text{((1); choice of $q_N$; (3))}\\
+&< \epsilon/3+\epsilon/3+\epsilon/3
+&&\text{((2))}\\
+&\le \epsilon . \qedhere
+\end{align*}
+
+  \end{minipage}%
+}
+
+
+\end{proof}
+
+
+%--this is false (used choice, just hidden in prev lemma --
+%This proves property (2). Note that no %representative of any $X_n$ was ever
+%chosen: the only sequences in $\Q$ appearing in the %proof are $(q_n)$ and
+%$(e_n)$.

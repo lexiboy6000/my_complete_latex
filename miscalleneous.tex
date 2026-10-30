@@ -1,0 +1,79 @@
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Using only a sequence to zero} \label{sec:nullseq}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Looking back, the Archimedean property (V3) of $\Q$ was used in only two
+places: to produce the null sequence $(e_n)$ (Lemma~\ref{lem:nullseq}), and to
+prove (V3) for $\Qb$ (Step 3c). Everything else used only the existence of
+$(e_n)$. So (V3) may be replaced by the weaker assumption
+\begin{enumerate}[nosep,leftmargin=4em]
+    \item[(V3$'$)] there is a sequence $e_n>0$ in $V$ with
+    $\forall\epsilon>0\ \exists N\ \forall n\ge N,\ e_n<\epsilon$;
+\end{enumerate}
+such a $V$ is automatically dense (there is no smallest positive element),
+and $(e_n)$ may be chosen with $e_{n+1}+e_{n+1}\le e_n$ (replace $e_{n+1}$ by
+$\min(e_{n+1},e_n/2)$).
+
+\begin{theorem} (completion without Archimedes) $\mid$ \label{thm:V3prime}
+Let $\Q$ be nontrivial and satisfy (V1), (V2) and (V3$'$). Then
+Sections~\ref{sec:construct}--\ref{sec:smallest} hold verbatim, except that
+$\Qb$ satisfies (V3$'$), with null sequence $\iota(e_n)$
+(Corollary~\ref{cor:wise}), in place of (V3).
+\end{theorem}
+
+The completion need no longer be $\R$:
+
+\begin{example} ($\Q\times\Q$ completes to $\Q\times\R$) $\mid$ \label{ex:lex}
+Let $V=\Q\times\Q$ (now $\Q$ the rationals) with componentwise addition and the
+\emph{lexicographic} order: $(a,b)>0$ iff $a>0$, or $a=0$ and $b>0$. It
+satisfies (V1), (V2) and (V3$'$) with $e_n=(0,(\tfrac12)^n)$, but not (V3):
+$n\cdot(0,1)=(0,n)<(1,0)$ for every $n$. For a Cauchy sequence $(a_n,b_n)$,
+taking $\epsilon=(0,1)$ shows that $a_n$ is eventually constant, say $=a$, and
+taking $\epsilon=(0,\delta)$ shows that $(b_n)$ is Cauchy in $\Q$. Hence
+$[(a_n,b_n)]\mapsto(a,[(b_n)])$ identifies $\Qb$ with $\Q\times\R$
+(lexicographic), which is not Archimedean.
+\end{example}
+
+
+\section{Completing any metric space}
+
+Say I have some arbitrary metric $(X,d: X \times X \to A)$ for some well-valued A. We wish to find the smallest metric that completes this one. Under the strength of the contents of this paper hitherto, the completion of A is either isomorphic to $\Z$ (th integers) or to $\R$ (the reals, $\Q$). However the integers isomorphically map into the reals so there is no harm in just always choosing the resulting completion metric to take values in $\R$....\\
+Our goal is, given a metric $(X,d_X: X \times X \to \R)$, find a larger space $(\bar{X},d_{\bar{X}}:\bar{X} \times \bar{X} \to \R)$ that (1) is complete (2) contains isometrically $(X,d)$, and (3) is the smallest set that does (1) \& (2).  \\
+
+The result is immediate as the proofs are exactly the same. We define 
+
+\[ \bar{X} = \{ [(a_n)] \mid\; \text{ $(a_n)$ is cauchy sequence in $(X,d_X)$}\} \]
+\[ d_{\bar{X}} ([(a_n)], [(b_n)]) = [(d_X(a_n,b_n))_{n \in \N}] = \lim_{n \ \in \N, n \to \infty}d_X(a_n,b_n) \]
+
+The equivalence relation required in eq \_\_ is also the same as is required by our distance function needing to be a metric. 
+Because nothing in our proofs of completeness used any of the structure on the metric space $\Q$ (only used this stuff on the values space), the same proofs follow through. 
+
+Note the reason for denoting $\bar{X}$ and $\bar{Q}$ is because these sets are the closure of the corresponding $X$ and $Q$ in their respective metric spaces. 
+
+
+\section{What sets complete to R?}
+
+add multiplication to R. Everything follows through from added multiplication from $Q$ and we define 
+\[ XY := ... \]
+The isormphism $l$ also preserves this multiplication so it all works out. Now we have a notion of the number $1$. Such a set $\bar{Q},+,<,*,\bar{d}(X,Y) := |X - Y| $ is ussually denoted by the familiar $\R$. \\
+
+example sets: 
+
+\[ A := \{ \frac{z}{2^n} \mid z \in \Z, n \in \N \} \]
+
+
+Given $X \in \R, X \geq 0$ By archemedian, given an n, 
+
+\[ \exists N \mid 2^nX < N \]
+
+Explicitely choose the minimal such N and denote $N_{0,(n)} := N_{\text{minimal}} - 1$. We have, 
+
+\[ N_{0,(n)} := \lfloor 2^n X\rfloor \leq 2^nX < N_{0,(n)} + 1 \]
+
+We get the resulting sequence $\frac{\lfloor 2^n X\rfloor}{2^n}$ which is a cauchy sequence into $A$ and whose limit / generating equivalence class gives exactly X. This gives an explicit construction of a element of a real number without using choice, as promised. \\
+
+
+decimal representation, base anything representation, etc. all just different versions of finding explicit formulas for the equivalence class of Cauchy sequences that makes a real number a real number. \\

@@ -1,0 +1,56 @@
+
+%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%
+% isometric embedding  --  property (1)
+%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%
+
+\subsection{Isometric embedding} \label{sec:embed}
+
+Map each $a\in\Q$ to the class of the constant sequence $(a,a,a,\dots)$:
+\[
+\iota:\Q\to\Qb,\qquad \iota(a):=[(a,a,a,\dots)].
+\]
+\begin{align*}
+&\iota(a)=\iota(b) \imp d\text{-}\lim_{n\to\infty}|a-b|=0 \imp |a-b|=0 \imp a=b
+&&\text{(injective)}\\
+&\iota(a)+\iota(b)=\iota(a+b);\qquad a<b\iff\iota(a)<\iota(b)
+&&\text{(Step 3a, 3b)}\\
+&\db(\iota(a),\iota(b))=[(d(a,b),d(a,b),\dots)]=\iota(d(a,b))
+&&\text{(isometric)}
+\end{align*}
+Hence $\iota$ is an isometric embedding $(\Q,d)\subseteq(\Qb,\db)$, and
+property (1) holds. From now on we freely regard $\Q$ as a subset of $\Qb$,
+writing $a$ for $\iota(a)$ when no confusion is possible.
+
+Distances in $\Qb$ are elements of $\Qb$, so an ``$\epsilon$'' in $\Qb$ is a
+class, not a number of $\Q$. The next corollary says that this never matters:
+it is enough to use $\epsilon$'s coming from $\Q$.
+
+\begin{corollary} (wiseness) $\mid$ \label{cor:wise}
+For $Y_n,Y\in\Qb$,
+\[
+\forall\epsilon\in\Q,\ \epsilon>0:\ \ \db(Y_n,Y)<\iota(\epsilon)\ev
+\quad\iff\quad
+\forall\epsilon\in\Qb,\ \epsilon>0:\ \ \db(Y_n,Y)<\epsilon\ev .
+\]
+We call the left side \emph{$\Q$-wise} and the right side \emph{$\Qb$-wise}
+convergence; the same holds for the Cauchy condition. In particular
+$\iota(e_n)\to0$ in $\Qb$.
+\end{corollary}
+% \begin{proof}
+% \begin{align*}
+% &\Leftarrow:\quad \epsilon\in\Q,\ \epsilon>0 \by{3b} \iota(\epsilon)\in\Qb,\ \iota(\epsilon)>0 .\\
+% &\Rightarrow:\quad \epsilon\in\Qb,\ \epsilon>0 \by{\ref{lem:ratbounds}a}
+% \exists q\in\Q:\ 0<\iota(q)<\epsilon \imp \db(Y_n,Y)<\iota(q)<\epsilon\ev .\\
+% &\phantom{\Rightarrow:}\quad e_n<\epsilon\ev \by{3b}
+% \db(\iota(e_n),0)=\iota(e_n)<\iota(\epsilon)\ev . \qedhere
+% \end{align*}
+% \end{proof}
+
+
+
+
+%%% ADD cauchy subsequence lemma. 
